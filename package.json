@@ -1,0 +1,25 @@
+{
+  "name": "escapefromurk",
+  "version": "1.0.0",
+  "description": "Javascript point and clicker game",
+  "main": "codes/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vincent007super/EscapeFromUrk.git"
+  },
+  "keywords": [
+    "Urk"
+  ],
+  "author": "Diego Croes Torres, Vincent Hoogenraat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vincent007super/EscapeFromUrk/issues"
+  },
+  "homepage": "https://github.com/Vincent007super/EscapeFromUrk#readme",
+  "dependencies": {
+    "phaser": "^3.87.0"
+  }
+}
