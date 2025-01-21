@@ -1,29 +1,25 @@
 class Scene {
-
     constructor(background, canvasWidth, canvasHeight, canvas) {
         this.canvas = canvas;
         this.background = background;
-        this.canvasWidth = canvasWidth;
-        this.canvasHeight = canvasHeight;
+        this.canvas.width = canvasWidth;
+        this.canvas.height = canvasHeight;
+        this.canvas.style.backgroundImage = `url(${this.background})`;
     }
 
     updateCanvasSize() {
-        if (this.canvasWidth != window.innerWidth) {
-            this.canvasWidth = window.innerWidth;
+        if (this.canvas.width !== window.innerWidth) {
+            this.canvas.width = window.innerWidth;
         }
-        if (this.canvasHeight != window.innerHeight) {
-            this.canvasHeight = window.innerHeight;
+        if (this.canvas.height !== window.innerHeight) {
+            this.canvas.height = window.innerHeight;
         }
+        this.canvasWidth = this.canvas.width;
+        this.canvasHeight = this.canvas.height;
     }
 
-    // setCanvasBackground(image, canvas) {
-    //     this.background = image;
-    //     canvas.style = "background-image: url(" + this.background + ")";
-    // }
-
-    // getCanvasTag() {
-    //     let canvas = document.querySelector(canvas);
-    //     return canvas;
-    // }
-
+    setCanvasBackground(image) {
+        this.background = image;
+        this.canvas.style.backgroundImage = `url(${this.background})`;
+    }
 }

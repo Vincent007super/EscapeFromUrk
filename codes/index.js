@@ -1,5 +1,5 @@
-let scene = new Scene('../media/imgs/back.png', window.innerWidth, window.innerHeight, document.querySelector(canvas));
+let canvas = document.querySelector('#gameCanvas');
+let scene = new Scene('../media/img/back.png', window.innerWidth, window.innerHeight, canvas);
 
-// scene.getCanvasTag();
-// scene.setCanvasBackground('../media/imgs/back.png', canvas);
-scene.updateCanvasSize(window.innerWidth, window.innerHeight);
+scene.updateCanvasSize();
+scene.setCanvasBackground('../media/img/back.png');
