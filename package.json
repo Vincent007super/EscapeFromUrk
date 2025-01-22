@@ -1,6 +1,6 @@
 {
   "name": "escapefromurk",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Javascript point and clicker game",
   "main": "codes/index.js",
   "scripts": {
