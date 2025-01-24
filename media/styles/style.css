@@ -4,5 +4,10 @@ body {
 }
 
 #gameCanvas {
+    image-rendering: pixelated; /* Ensures crisp scaling for pixel art */
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
     background-size: cover;
 }
