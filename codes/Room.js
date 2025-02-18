@@ -1,37 +1,36 @@
 class Room {
-    constructor(name, background) {
+    constructor(name, background, items = [], connections = []) {
         this.name = name;
         this.background = background;
-        this.items = [];
-        this.connectedRooms = {}; // E.g., { north: anotherRoom, south: anotherRoom }
-    }
-
-    setBackground(image) {
-        this.background = image;
+        this.items = items;
+        this.connections = connections; // Array of { x, y, width, height, targetRoom }
     }
 
     addItem(item) {
         this.items.push(item);
     }
 
-    removeItem(item) {
-        const index = this.items.indexOf(item);
-        if (index !== -1) {
-            this.items.splice(index, 1);
-        }
+    setConnections(connections) {
+        this.connections = connections;
     }
 
-    connectRoom(direction, room) {
-        this.connectedRooms[direction] = room;
+    render(context) {
+        const bgImage = new Image();
+        bgImage.src = this.background;
+        bgImage.onload = () => {
+            context.drawImage(bgImage, 0, 0, context.canvas.width, context.canvas.height);
+        };
+
+        // Draw items (assuming each item has a render method)
+        this.items.forEach(item => item.render(context));
     }
 
-    navigateTo(direction) {
-        if (this.connectedRooms[direction]) {
-            return this.connectedRooms[direction];
-        } else {
-            console.log(`You cannot go ${direction} from here.`);
-            return this;
+    handleClick(x, y) {
+        for (let conn of this.connections) {
+            if (x >= conn.x && x <= conn.x + conn.width && y >= conn.y && y <= conn.y + conn.height) {
+                return conn.targetRoom;
+            }
         }
+        return null;
     }
 }
-
