@@ -1,37 +1,22 @@
 class Room {
-    constructor(name, background) {
+    constructor(name, background, building) {
         this.name = name;
         this.background = background;
+        this.building = building;
         this.items = [];
-        this.connectedRooms = {}; // E.g., { north: anotherRoom, south: anotherRoom }
+        this.exits = {}; // Stores possible directions ("left", "right", etc.)
     }
 
-    setBackground(image) {
-        this.background = image;
+    addExit(direction, room) {
+        this.exits[direction] = room;
     }
 
-    addItem(item) {
-        this.items.push(item);
-    }
-
-    removeItem(item) {
-        const index = this.items.indexOf(item);
-        if (index !== -1) {
-            this.items.splice(index, 1);
-        }
-    }
-
-    connectRoom(direction, room) {
-        this.connectedRooms[direction] = room;
-    }
-
-    navigateTo(direction) {
-        if (this.connectedRooms[direction]) {
-            return this.connectedRooms[direction];
-        } else {
-            console.log(`You cannot go ${direction} from here.`);
-            return this;
-        }
+    draw(ctx) {
+        let img = new Image();
+        img.src = this.background;
+        img.onload = () => {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
+        };
     }
 }
-

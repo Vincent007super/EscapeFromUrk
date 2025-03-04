@@ -1,10 +1,11 @@
+// Setup the canvas and check for size change
+// Scene.js keeps the game running correctly in the browser and keeps the measurements correctly
+
 class Scene {
-    constructor(background, canvasWidth, canvasHeight, canvas) {
+    constructor(canvasWidth, canvasHeight, canvas) {
         this.canvas = canvas;
-        this.background = background;
         this.canvas.width = canvasWidth;
         this.canvas.height = canvasHeight;
-        this.canvas.style.backgroundImage = `url(${this.background})`;
     }
 
     updateCanvasSize() {
@@ -15,10 +16,5 @@ class Scene {
         if (this.canvas.height !== window.innerHeight) {
             this.canvas.height = window.innerHeight;
         }
-    }
-
-    setCanvasBackground(image) {
-        this.background = image;
-        this.canvas.style.backgroundImage = `url(${this.background})`;
     }
 }
