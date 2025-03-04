@@ -1,19 +1,11 @@
 class Building {
-    constructor(name, backgrounds = []) {
+    constructor(name, backgrounds) {
         this.name = name;
-        this.rooms = {};
-        this.backgrounds = backgrounds;
+        this.backgrounds = backgrounds; // Array of background images
+        this.rooms = {}; // Object to hold Room instances
     }
 
-    addRoom(name, backgroundIndex) {
-        if (backgroundIndex < 0 || backgroundIndex >= this.backgrounds.length) {
-            console.error("Invalid background index for room:", name);
-            return;
-        }
-        this.rooms[name] = new Room(name, this.backgrounds[backgroundIndex]);
-    }
-
-    getRoom(name) {
-        return this.rooms[name] || null;
+    addRoom(room) {
+        this.rooms[room.name] = room;
     }
 }

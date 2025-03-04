@@ -1,36 +1,22 @@
 class Room {
-    constructor(name, background, items = [], connections = []) {
+    constructor(name, background, building) {
         this.name = name;
         this.background = background;
-        this.items = items;
-        this.connections = connections; // Array of { x, y, width, height, targetRoom }
+        this.building = building;
+        this.items = [];
+        this.exits = {}; // Stores possible directions ("left", "right", etc.)
     }
 
-    addItem(item) {
-        this.items.push(item);
+    addExit(direction, room) {
+        this.exits[direction] = room;
     }
 
-    setConnections(connections) {
-        this.connections = connections;
-    }
-
-    render(context) {
-        const bgImage = new Image();
-        bgImage.src = this.background;
-        bgImage.onload = () => {
-            context.drawImage(bgImage, 0, 0, context.canvas.width, context.canvas.height);
+    draw(ctx) {
+        let img = new Image();
+        img.src = this.background;
+        img.onload = () => {
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
         };
-
-        // Draw items (assuming each item has a render method)
-        this.items.forEach(item => item.render(context));
-    }
-
-    handleClick(x, y) {
-        for (let conn of this.connections) {
-            if (x >= conn.x && x <= conn.x + conn.width && y >= conn.y && y <= conn.y + conn.height) {
-                return conn.targetRoom;
-            }
-        }
-        return null;
     }
 }
