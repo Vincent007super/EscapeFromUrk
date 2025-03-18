@@ -4,7 +4,8 @@ class Room {
         this.background = background;
         this.building = building;
         this.items = [];
-        this.exits = {}; // Stores possible directions ("left", "right", etc.)
+        this.exits = {};
+        this.position = { x: 0, y: 0 }; // Coordinates for map rendering
     }
 
     addExit(direction, room) {
@@ -20,3 +21,5 @@ class Room {
         };
     }
 }
+
+export default Room;
