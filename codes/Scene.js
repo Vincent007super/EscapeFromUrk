@@ -1,25 +1,26 @@
 class Scene {
-    constructor(background, canvasWidth, canvasHeight, canvas) {
+    constructor(canvas) {
         this.canvas = canvas;
-        this.background = background;
-        this.canvas.width = canvasWidth;
-        this.canvas.height = canvasHeight;
-        this.canvas.style.backgroundImage = `url(${this.background})`;
+        this.ctx = canvas.getContext("2d");
+
+        // Initialize the canvas size correctly
+        this.updateCanvasSize();
+
+        // Automatically resize canvas when the window resizes
+        window.addEventListener("resize", () => this.updateCanvasSize());
     }
 
     updateCanvasSize() {
-        if (this.canvas.width !== window.innerWidth) {
-            this.canvas.width = window.innerWidth;
-        }
-        if (this.canvas.height !== window.innerHeight) {
-            this.canvas.height = window.innerHeight;
-        }
-        this.canvasWidth = this.canvas.width;
-        this.canvasHeight = this.canvas.height;
+        // Set canvas size to match the window's inner width and height
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        console.log(`Canvas resized to: ${this.canvas.width} x ${this.canvas.height}`);
     }
 
-    setCanvasBackground(image) {
-        this.background = image;
-        this.canvas.style.backgroundImage = `url(${this.background})`;
+    clear() {
+        // Clear the entire canvas (useful before redrawing)
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
+
+export default Scene;
