@@ -1,3 +1,5 @@
+// generateMap.js
+
 const GenerateMap = (currentRoom) => {
     let oldCanvas = document.getElementById("mapCanvas");
     if (oldCanvas) oldCanvas.remove(); // Remove previous map
@@ -17,8 +19,14 @@ const GenerateMap = (currentRoom) => {
     let positions = new Map();
     let queue = [{ room: currentRoom, x: 150, y: 150 }];
     let visited = new Set();
-    let offsets = { north: [0, -40], south: [0, 40], east: [40, 0], west: [-40, 0] };
+    let offsets = { 
+        north: [0, -40], 
+        south: [0, 40], 
+        east: [40, 0], 
+        west: [-40, 0] 
+    };
 
+    // Traverse rooms to build the map
     while (queue.length) {
         let { room, x, y } = queue.shift();
         if (visited.has(room)) continue;
@@ -34,6 +42,7 @@ const GenerateMap = (currentRoom) => {
         }
     }
 
+    // Draw connections
     for (let [room, { x, y }] of positions) {
         for (let direction in room.exits) {
             let nextRoom = room.exits[direction];
@@ -48,6 +57,7 @@ const GenerateMap = (currentRoom) => {
         }
     }
 
+    // Draw rooms
     for (let [room, { x, y }] of positions) {
         mapCtx.fillStyle = room === currentRoom ? "red" : "white";
         mapCtx.beginPath();

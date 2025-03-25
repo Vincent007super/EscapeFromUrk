@@ -1,3 +1,7 @@
+// Building.js
+
+import Room from "./Room.js";
+
 class Building {
     constructor(name, backgrounds) {
         this.name = name;
